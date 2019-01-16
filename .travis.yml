@@ -1,0 +1,23 @@
+language: php
+sudo: false
+dist: trusty
+
+cache:
+    directories:
+        - vendor
+        - $HOME/.composer/cache
+
+php:
+  - 7.1
+  - 7.2
+  - 7.3
+  - nightly
+
+matrix:
+  allow_failures:
+    - php: nightly
+
+install:
+    - travis_retry composer install --ansi --prefer-dist --no-interaction --optimize-autoloader --no-suggest --no-progress
+
+script: ./vendor/bin/phpunit

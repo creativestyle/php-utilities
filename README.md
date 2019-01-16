@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/creativestyle/php-utilities.svg?branch=master)](https://travis-ci.org/creativestyle/php-utilities)
+
 Common PHP Utilities Library
 ============================
 
