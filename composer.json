@@ -12,20 +12,19 @@
     ],
     "require": {
         "php": ">=5.5",
-        "ext-intl": "*",
-        "ircmaxell/random-lib": "^1.2"
+        "paragonie/random-lib": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "5.5.*"
+        "phpunit/phpunit": "~6.2.0"
     },
     "autoload":     {
         "psr-4": {
-            "CS\\Utilities\\": "src/"
+            "Creativestyle\\Utilities\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CS\\Utilities\\Tests\\": "tests/"
+            "Creativestyle\\Utilities\\Tests\\": "tests/"
         }
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace CS\Utilities;
+namespace Creativestyle\Utilities;
 
 class StringHelpers
 {
@@ -46,17 +46,6 @@ class StringHelpers
     }
 
     /**
-     * Alias to urlize
-     *
-     * @param $text
-     * @return string
-     */
-    public static function slugify($text)
-    {
-        return static::urlize($text);
-    }
-
-    /**
      * Joins elements ignoring empty ones.
      *
      * @param string $delimiter
@@ -83,23 +72,13 @@ class StringHelpers
      */
     public static function endsWith($haystack, $needle)
     {
-        $ldiff = mb_strlen($haystack) - mb_strlen($needle);
+        $ldiff = strlen($haystack) - strlen($needle);
 
         if ($ldiff < 0) {
             return false;
         }
 
-        return mb_strpos($haystack, $needle, $ldiff) === $ldiff;
-    }
-
-    /**
-     * @param string $haystack
-     * @param string $needle
-     * @return bool
-     */
-    public static function startsWith($haystack, $needle)
-    {
-        return mb_substr($haystack, 0, strlen($needle)) === $needle;
+        return strpos($haystack, $needle, $ldiff) === $ldiff;
     }
 
     /**
@@ -112,19 +91,6 @@ class StringHelpers
     }
 
     /**
-     * @param string $string
-     * @return string
-     */
-    public static function capitalize($string)
-    {
-        if (empty($string)) {
-            return $string;
-        }
-
-        return mb_convert_case($string[0], MB_CASE_UPPER) . mb_substr($string, 1);
-    }
-
-    /**
      * Humanizes a camelcase string.
      *
      * @param string $text
@@ -132,7 +98,7 @@ class StringHelpers
      */
     public static function humanize($text)
     {
-        return static::capitalize(strtolower(preg_replace('/([a-z0-9])([A-Z])/', '$1 $2', $text)));
+        return ucfirst(strtolower(preg_replace('/([a-z0-9])([A-Z])/', '$1 $2', $text)));
     }
 
     /**

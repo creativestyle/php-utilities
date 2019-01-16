@@ -1,6 +1,6 @@
 <?php
 
-namespace CS\Utilities;
+namespace Creativestyle\Utilities;
 
 class ArrayHelpers
 {

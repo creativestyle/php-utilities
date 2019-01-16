@@ -1,11 +1,10 @@
 <?php
 
-namespace CS\Utilities\Tests;
+namespace Creativestyle\Utilities\Tests;
 
-use CS\Utilities\StringHelpers;
-use Prophecy\Util\StringUtil;
+use Creativestyle\Utilities\StringHelpers;
 
-class StringHelpersTest extends \PHPUnit_Framework_TestCase
+class StringHelpersTest extends \PHPUnit\Framework\TestCase
 {
     public function testEndsWith()
     {
@@ -68,13 +67,5 @@ class StringHelpersTest extends \PHPUnit_Framework_TestCase
             'script-a',
             StringHelpers::urlize("<script>\r\n\na\n ")
         );
-    }
-
-    public function testStartsWith()
-    {
-        $this->assertTrue(StringHelpers::startsWith('john likes oranges', 'john lik'));
-        $this->assertTrue(StringHelpers::startsWith('marie loves tomatoes', 'mar'));
-        $this->assertNotTrue(StringHelpers::startsWith('marie loves tomatoes', 'loves'));
-        $this->assertNotTrue(StringHelpers::startsWith('jenkins, how are you', 'you'));
     }
 }

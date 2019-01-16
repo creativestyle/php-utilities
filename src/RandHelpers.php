@@ -1,6 +1,6 @@
 <?php
 
-namespace CS\Utilities;
+namespace Creativestyle\Utilities;
 
 use RandomLib;
 
@@ -14,7 +14,7 @@ class RandHelpers
      *
      * @return string
      */
-    public static function seed()
+    public static function seed(): string
     {
         return floor(microtime(true) * 10000) . mt_rand();
     }
@@ -39,41 +39,6 @@ class RandHelpers
         }
 
         return $array[array_rand($array)];
-    }
-
-    /**
-     * @param array $array
-     * @param int $count
-     * @return mixed
-     */
-    public static function sample(array $array, $count = 1)
-    {
-        if (empty($array) || $count < 1) {
-            return [];
-        }
-
-        if ($count > count($array)) {
-            shuffle($array);
-
-            return $array;
-        }
-
-        $result = [];
-        $i = 0;
-
-        while ($i < $count) {
-            $item = static::arrayRand($array);
-
-            if (in_array($item, $result)) {
-                continue;
-            }
-
-            $result[] = $item;
-
-            $i++;
-        }
-
-        return $result;
     }
 
     /**

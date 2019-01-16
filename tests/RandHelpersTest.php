@@ -1,10 +1,10 @@
 <?php
 
-namespace CS\Utilities\Tests;
+namespace Creativestyle\Utilities\Tests;
 
-use CS\Utilities\RandHelpers;
+use Creativestyle\Utilities\RandHelpers;
 
-class RandHelpersTest extends \PHPUnit_Framework_TestCase
+class RandHelpersTest extends \PHPUnit\Framework\TestCase
 {
 
     public function getRandStringLengthData()
@@ -37,21 +37,6 @@ class RandHelpersTest extends \PHPUnit_Framework_TestCase
         for ($i = 0; $i < mb_strlen($result); ++$i) {
             $this->assertContains($result[$i], $chars, 'Character not in list');
         }
-    }
-
-    public function testSampleReturnsProperNumberOfResults()
-    {
-        $this->assertEquals(1, count(RandHelpers::sample(['a', 'b', 'c', 'd', 'e'], 1)));
-        $this->assertEquals(0, count(RandHelpers::sample(['a', 'b', 'c', 'd', 'e'], 0)));
-        $this->assertEquals(5, count(RandHelpers::sample(['a', 'b', 'c', 'd', 'e'], 5)));
-        $this->assertEquals(5, count(RandHelpers::sample(['a', 'b', 'c', 'd', 'e'], 10)));
-    }
-
-    public function testSampleDoesntRepeatResults()
-    {
-        $result = RandHelpers::sample(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'], 7);
-
-        $this->assertEquals(count(array_unique($result)), 7);
     }
 
 }

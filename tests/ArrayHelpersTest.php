@@ -1,10 +1,10 @@
 <?php
 
-namespace CS\Utilities\Tests;
+namespace Creativestyle\Utilities\Tests;
 
-use CS\Utilities\ArrayHelpers;
+use Creativestyle\Utilities\ArrayHelpers;
 
-class ArrayHelpersTest extends \PHPUnit_Framework_TestCase
+class ArrayHelpersTest extends \PHPUnit\Framework\TestCase
 {
     public function testPickColumn()
     {
