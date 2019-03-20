@@ -82,4 +82,24 @@ class ArrayHelpers
 
         return array_sum($values) / count($values);
     }
+
+    /**
+     * Maps an array of classes instances to the values returned
+     * by calling the specified method on each of the objects.
+     *
+     * @param object[] $arr Array of class instances
+     * @param string $methodName Method to call on the object
+     * @param array $methodArguments Method call arguments
+     * @param string|null $validateClassName If set then each object will be ensured to be an instance of the specified class
+     */
+    public static function mapMethod(array $arr, string $methodName, array $methodArguments = [], string $validateClassName = null)
+    {
+        return array_map(function(object $object) use ($methodName, $methodArguments, $validateClassName) {
+            if ($validateClassName && !is_a($object, $validateClassName)) {
+                throw new \InvalidArgumentException(sprintf('Expected object of class "%s", but got "%s"', $validateClassName, get_class($object)));
+            }
+
+            $object->{$methodName}(...$methodArguments);
+        }, $arr);
+    }
 }
