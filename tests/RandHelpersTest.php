@@ -3,8 +3,9 @@
 namespace Creativestyle\Utilities\Tests;
 
 use Creativestyle\Utilities\RandHelpers;
+use PHPUnit\Framework\TestCase;
 
-class RandHelpersTest extends \PHPUnit\Framework\TestCase
+class RandHelpersTest extends TestCase
 {
 
     public function getRandStringLengthData()

@@ -1,6 +1,6 @@
 <?php
 
-namespace Creativestyle\Utilities\Tests;
+namespace Creativestyle\Utilities\Tests\Dummies;
 
 use Creativestyle\Utilities\Configurable;
 use Symfony\Component\OptionsResolver\OptionsResolver;

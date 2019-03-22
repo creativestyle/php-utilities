@@ -11,7 +11,7 @@ class ArrayHelpers
      * @param string $column
      * @return array
      */
-    public static function pickColumn(array $table, $column)
+    public static function pickColumn(array $table, $column): array
     {
         return array_map(function(array $row) use ($column) {
             return isset($row[$column]) ? $row[$column] : null;
@@ -26,7 +26,7 @@ class ArrayHelpers
      *
      * @return array
      */
-    public static function pick(array $keys, array $subject)
+    public static function pick(array $keys, array $subject): array
     {
         $result = [];
 
@@ -49,7 +49,7 @@ class ArrayHelpers
      * @param callable $callback
      * @return array
      */
-    public static function map(array $arr, $callback)
+    public static function map(array $arr, $callback): array
     {
         $result = [];
 
@@ -70,9 +70,9 @@ class ArrayHelpers
      * @param array $arr
      * @param null $key
      *
-     * @return float|int
+     * @return float
      */
-    public static function average(array $arr, $key = null)
+    public static function average(array $arr, $key = null): float
     {
         if ($key) {
             $values = static::pickColumn($arr, $key);
@@ -80,7 +80,7 @@ class ArrayHelpers
             $values = $arr;
         }
 
-        return array_sum($values) / count($values);
+        return floatval(array_sum($values) / count($values));
     }
 
     /**
@@ -91,15 +91,49 @@ class ArrayHelpers
      * @param string $methodName Method to call on the object
      * @param array $methodArguments Method call arguments
      * @param string|null $validateClassName If set then each object will be ensured to be an instance of the specified class
+     * @return array
      */
-    public static function mapMethod(array $arr, string $methodName, array $methodArguments = [], string $validateClassName = null)
+    public static function mapMethod(array $arr, string $methodName, array $methodArguments = [], string $validateClassName = null): array
     {
-        return array_map(function(object $object) use ($methodName, $methodArguments, $validateClassName) {
+        return array_map(function($object) use ($methodName, $methodArguments, $validateClassName) {
             if ($validateClassName && !is_a($object, $validateClassName)) {
                 throw new \InvalidArgumentException(sprintf('Expected object of class "%s", but got "%s"', $validateClassName, get_class($object)));
             }
 
-            $object->{$methodName}(...$methodArguments);
+            return $object->{$methodName}(...$methodArguments);
         }, $arr);
+    }
+
+    /**
+     * array_uniqe() for arrays of objects
+     *
+     * Preserves keys and order (last instance is kept).
+     *
+     * @param object[] $arr
+     * @return array
+     */
+    public static function uniqueObjects(array $arr): array
+    {
+        $uniqueKeys = [];
+
+        foreach ($arr as $key => $obj) {
+            $hash = spl_object_hash($obj);
+
+            if (isset($uniqueKeys[$hash])) {
+                continue;
+            }
+
+            $uniqueKeys[$hash] = $key;
+        }
+
+        return array_combine(
+            $uniqueKeys,
+            array_map(
+                function($key) use ($arr) {
+                    return $arr[$key];
+                },
+                $uniqueKeys
+            )
+        );
     }
 }

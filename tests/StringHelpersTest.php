@@ -3,8 +3,9 @@
 namespace Creativestyle\Utilities\Tests;
 
 use Creativestyle\Utilities\StringHelpers;
+use PHPUnit\Framework\TestCase;
 
-class StringHelpersTest extends \PHPUnit\Framework\TestCase
+class StringHelpersTest extends TestCase
 {
     public function testEndsWith()
     {

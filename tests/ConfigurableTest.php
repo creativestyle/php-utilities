@@ -2,7 +2,10 @@
 
 namespace Creativestyle\Utilities\Tests;
 
-class ConfigurableTest extends \PHPUnit\Framework\TestCase
+use Creativestyle\Utilities\Tests\Dummies\ConfigurableTestClass;
+use PHPUnit\Framework\TestCase;
+
+class ConfigurableTest extends TestCase
 {
     public function testIfConfigurable()
     {
